@@ -3,8 +3,8 @@ const FrontCard = () => (
         <div className="text-white flex flex-col h-full justify-between">
 
             <div className="flex flex-row items-center">
-                <div className="w-7 h-7 md:w-10 md:h-10 rounded-full border-2 border-white bg-white" />
-                <div className="w-3 h-3 md:w-5 md:h-5 rounded-full border border-white ml-2 md:ml-4" />
+                <div className="w-7 h-7 md:w-10 md:h-10 rounded-full border-2 border-white bg-white"/>
+                <div className="w-3 h-3 md:w-5 md:h-5 rounded-full border border-white ml-2 md:ml-4"/>
             </div>
 
             <div className="flex flex-col h-1/2 justify-around">
