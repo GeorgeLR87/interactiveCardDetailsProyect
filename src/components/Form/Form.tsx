@@ -1,4 +1,4 @@
-import { Dispatch } from "react"
+import { Dispatch, MouseEvent } from "react"
 import { FormActions } from "../../reducers/form-reducer"
 import { FormData } from "../../types"
 import CardHolderNameInput from "./components/CardHolderNameInput"
@@ -14,6 +14,11 @@ type FormProps = {
 }
 
 const Form = ({ state, dispatch }: FormProps) => {
+    const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        console.log('Form submitted!',)
+
+    }
     return (
         <section className="flex flex-col justify-center items-center mx-2 md:mt-14 lg:mt-0">
             <div className="w-full max-w-sm">
@@ -41,7 +46,10 @@ const Form = ({ state, dispatch }: FormProps) => {
 
                 </div>
 
-                <button className="w-full mt-6 bg-very-dark-violet text-white py-3 rounded-lg text--base hover:bg-dark-grayish-violet transition duration-200">
+                <button
+                    className="w-full mt-6 bg-very-dark-violet text-white py-3 rounded-lg text--base hover:bg-dark-grayish-violet transition duration-200"
+                    onClick={handleSubmit}
+                >
                     Confirm
                 </button>
 

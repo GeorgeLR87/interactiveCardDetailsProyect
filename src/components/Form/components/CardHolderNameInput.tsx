@@ -16,7 +16,7 @@ const CardHolderNameInput = ({ state, dispatch }: CardholderNameInputProps) => {
             payload: { cardholderName: e.target.value },
         })
     }
-    
+
     return (
         <div className="mb-4">
             <label
@@ -26,6 +26,7 @@ const CardHolderNameInput = ({ state, dispatch }: CardholderNameInputProps) => {
                 Cardholder Name
             </label>
             <input
+                required
                 className="w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:border-purple-700 focus:outline-none"
                 id="cardholderName"
                 type="text"
