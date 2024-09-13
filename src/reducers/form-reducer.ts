@@ -1,11 +1,27 @@
+import { EFormaActions, EFormData } from "../enums/Form"
 import { FormData } from "../types"
 
 export type FormActions =
-    { type: 'set-cardholder-name', payload: { cardholderName: FormData['cardholderName'] } } |
-    { type: 'set-card-number', payload: { cardNumber: FormData['cardNumber'] } } |
-    { type: 'set-exp-month', payload: { expMonth: FormData['expMonth'] } } |
-    { type: 'set-exp-year', payload: { expYear: FormData['expYear'] } } |
-    { type: 'set-cvc', payload: { cvc: FormData['cvc'] } }
+    | {
+        type: EFormaActions.SetCardholderName,
+        payload: { cardholderName: FormData[EFormData.CardholderName] }
+    }
+    | {
+        type: EFormaActions.SetCardNumber,
+        payload: { cardNumber: FormData[EFormData.CardNumber] }
+    }
+    | {
+        type: EFormaActions.SetExpMonth,
+        payload: { expMonth: FormData[EFormData.ExpMonth] }
+    }
+    | {
+        type: EFormaActions.SetExpYear,
+        payload: { expYear: FormData[EFormData.ExpYear] }
+    }
+    | {
+        type: EFormaActions.SetCVC,
+        payload: { cvc: FormData[EFormData.CVC] }
+    }
 
 export const initialState: FormData = {
     cardholderName: '',
@@ -20,40 +36,35 @@ export const formReducer = (
     action: FormActions
 ) => {
 
-    if(action.type === 'set-cardholder-name') {
+    if (action.type === EFormaActions.SetCardholderName) {
         return {
             ...state,
             cardholderName: action.payload.cardholderName
         }
     }
-
-    if(action.type === 'set-card-number') {
+    if (action.type === EFormaActions.SetCardNumber) {
         return {
             ...state,
             cardNumber: action.payload.cardNumber
         }
     }
-
-    if(action.type === 'set-exp-month') {
+    if (action.type === EFormaActions.SetExpMonth) {
         return {
             ...state,
             expMonth: action.payload.expMonth
         }
     }
-
-    if(action.type === 'set-exp-year') {
+    if (action.type === EFormaActions.SetExpYear) {
         return {
             ...state,
             expYear: action.payload.expYear
         }
     }
-
-    if(action.type === 'set-cvc') {
+    if (action.type === EFormaActions.SetCVC) {
         return {
             ...state,
             cvc: action.payload.cvc
         }
     }
-
     return state
 }

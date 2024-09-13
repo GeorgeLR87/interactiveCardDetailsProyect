@@ -1,6 +1,7 @@
 import { ChangeEvent, Dispatch } from "react"
 import { FormActions } from "../../../reducers/form-reducer"
 import { formatYear } from "../../../helpers/helpers"
+import { EFormaActions, EFormData } from "../../../enums/Form"
 
 type ExpYearInputProps = {
     state: string;
@@ -8,11 +9,10 @@ type ExpYearInputProps = {
 }
 
 const ExpYearInput = ({ state, dispatch }: ExpYearInputProps) => {
-
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const formattedYear = formatYear(e.target.value);
         dispatch({
-            type: "set-exp-year",
+            type: EFormaActions.SetExpYear,
             payload: { expYear: formattedYear },
         })
     }
@@ -20,7 +20,7 @@ const ExpYearInput = ({ state, dispatch }: ExpYearInputProps) => {
     return (
         <input
             className="w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:border-purple-700 focus:outline-none"
-            id="expYear"
+            id={EFormData.ExpYear}
             type="number"
             placeholder="YY"
             value={state}

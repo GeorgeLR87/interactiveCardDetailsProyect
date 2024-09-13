@@ -1,5 +1,6 @@
 import { ChangeEvent, Dispatch } from "react"
 import { FormActions } from "../../../reducers/form-reducer"
+import { EFormaActions, EFormData } from "../../../enums/Form"
 
 type CardholderNameInputProps = {
     state: string;
@@ -9,10 +10,8 @@ type CardholderNameInputProps = {
 const CardHolderNameInput = ({ state, dispatch }: CardholderNameInputProps) => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>) => {
-
-
         dispatch({
-            type: "set-cardholder-name",
+            type: EFormaActions.SetCardholderName,
             payload: { cardholderName: e.target.value },
         })
     }
@@ -20,14 +19,14 @@ const CardHolderNameInput = ({ state, dispatch }: CardholderNameInputProps) => {
     return (
         <div className="mb-4">
             <label
-                htmlFor="cardholderName"
+                htmlFor={EFormData.CardholderName}
                 className="block uppercase text-sm text-very-dark-violet mb-1"
             >
                 Cardholder Name
             </label>
             <input
                 className="w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:border-purple-700 focus:outline-none"
-                id="cardholderName"
+                id={EFormData.CardholderName}
                 type="text"
                 placeholder="e.g. Jane Appleseed"
                 value={state}
