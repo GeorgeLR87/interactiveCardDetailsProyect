@@ -7,7 +7,6 @@ type FormProps = {
 }
 
 const Cards = ({ state }: FormProps) => (
-
   <section className="lg:grid lg:grid-cols-5 lg:gap-6 lg:grid-rows-2 static">
     <FrontCard 
       cardholderName={state.cardholderName} 

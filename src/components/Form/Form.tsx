@@ -1,12 +1,11 @@
 import { Dispatch, MouseEvent } from "react"
 import { FormActions } from "../../reducers/form-reducer"
 import { FormData } from "../../types"
+import { EFormData } from "../../enums/Form"
 import CardHolderNameInput from "./components/CardHolderNameInput"
 import CardNumberInput from "./components/CardNumberInput"
-import ExpMonthInput from "./components/ExpMonthInput"
-import ExpYearInput from "./components/ExpYearInput"
 import CVCInput from "./components/CVCInput"
-
+import Dates from "../Dates/Dates"
 
 type FormProps = {
     state: FormData
@@ -22,28 +21,17 @@ const Form = ({ state, dispatch }: FormProps) => {
     return (
         <section className="flex flex-col justify-center items-center mx-2 md:mt-14 lg:mt-0">
             <div className="w-full max-w-sm">
-
                 <CardHolderNameInput state={state.cardholderName} dispatch={dispatch} />
                 <CardNumberInput state={state.cardNumber} dispatch={dispatch} />
 
                 <div className="flex flex-row justify-between gap-4 w-full">
-                    <div className="mb-4">
-                        <label
-                            htmlFor="expMonth"
-                            className="block uppercase text-sm text-very-dark-violet mb-1"
-                        >
-                            Exp. Date (MM/YY)
-                        </label>
-                        <div className="flex flex-row gap-2">
-
-                            <ExpMonthInput state={state.expMonth} dispatch={dispatch} />
-                            <ExpYearInput state={state.expYear} dispatch={dispatch} />
-
-                        </div>
-                    </div>
-
+                    <Dates
+                        state={{
+                            expMonth: state[EFormData.ExpMonth],
+                            expYear: state[EFormData.ExpYear]
+                        }}
+                        dispatch={dispatch} />
                     <CVCInput state={state.cvc} dispatch={dispatch} />
-
                 </div>
 
                 <button

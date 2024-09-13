@@ -1,8 +1,6 @@
 export const formatCardNumber = (cardNumber: string) => {
-
     const limited = cardNumber.slice(0, 19)
     const formatted = limited.replace(/(\d{4})(?=\d)/g, '$1 ')
-
     return formatted
 }
 
