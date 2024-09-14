@@ -1,7 +1,9 @@
+import { EFormData } from "../enums/Form";
+
 export type FormData = {
-    cardholderName: string,
-    cardNumber: string,
-    expMonth: string,
-    expYear: string,
-    cvc: string,
-}
+  cardholderName: EFormData.CardholderName;
+  cardNumber: EFormData.CardNumber;
+  expMonth: EFormData.ExpMonth;
+  expYear: EFormData.ExpYear;
+  cvc: EFormData.CVC;
+};
