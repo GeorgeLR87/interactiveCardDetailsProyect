@@ -1,5 +1,5 @@
 import { EFormaActions, EFormData } from "../enums/Form";
-import { FormData } from "../types";
+import { FormData } from "../types/FormData";
 
 export type FormActions =
   | {
