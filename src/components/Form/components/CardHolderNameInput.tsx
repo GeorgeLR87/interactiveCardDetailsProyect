@@ -5,9 +5,10 @@ import { FormActions } from "../../../reducers/form-reducer";
 type CardholderNameInputProps = {
   state: string;
   dispatch: Dispatch<FormActions>;
+  error?: string;
 };
 
-const CardHolderNameInput = ({ state, dispatch }: CardholderNameInputProps) => {
+const CardHolderNameInput = ({ state, dispatch, error }: CardholderNameInputProps) => {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>,
   ) => {
@@ -26,13 +27,14 @@ const CardHolderNameInput = ({ state, dispatch }: CardholderNameInputProps) => {
         Cardholder Name
       </label>
       <input
-        className="w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:border-purple-700 focus:outline-none"
+        className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${error ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
         id={EFormData.CardholderName}
         type="text"
         placeholder="e.g. Jane Appleseed"
         value={state}
         onChange={handleChange}
       />
+      {error && <p className="text-red-card text-sm mt-1">{error}</p>}
     </div>
   );
 };

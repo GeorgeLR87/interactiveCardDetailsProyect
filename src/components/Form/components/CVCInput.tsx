@@ -6,9 +6,10 @@ import { FormActions } from "../../../reducers/form-reducer";
 type CVCInputProps = {
   state: string;
   dispatch: Dispatch<FormActions>;
+  error?: string;
 };
 
-const CVCInput = ({ state, dispatch }: CVCInputProps) => {
+const CVCInput = ({ state, dispatch, error }: CVCInputProps) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const formattedCVC = formatCVC(e.target.value);
     dispatch({
@@ -21,12 +22,12 @@ const CVCInput = ({ state, dispatch }: CVCInputProps) => {
     <div className="mb-4 w-full">
       <label
         htmlFor={EFormData.CVC}
-        className="block uppercase text-sm text-very-dark-violet mb-1"
+        className="block uppercase text-sm text-deep-violet mb-1"
       >
         CVC
       </label>
       <input
-        className="w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:border-purple-700 focus:outline-none"
+        className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${error ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
         id={EFormData.CVC}
         type="number"
         placeholder="e.g. 123"
@@ -34,6 +35,7 @@ const CVCInput = ({ state, dispatch }: CVCInputProps) => {
         onChange={handleChange}
         maxLength={3}
       />
+      {error && <p className="text-red-card text-sm mt-1">{error}</p>}
     </div>
   );
 };
