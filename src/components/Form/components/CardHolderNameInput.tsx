@@ -34,7 +34,7 @@ const CardHolderNameInput = ({ state, dispatch, error }: CardholderNameInputProp
         value={state}
         onChange={handleChange}
       />
-      {error && <p className="text-red-card text-sm mt-1">{error}</p>}
+      {error && <p className="text-red-card text-xsl mt-1">{error}</p>}
     </div>
   );
 };

@@ -29,7 +29,7 @@ export const formatCVC = (cvc: string): string => {
 }
 
 export const validateForm = (state: FormData): FormErrors => {
-    
+
     const errors: FormErrors = {}
 
     if (!state[EFormData.CardholderName]) {
@@ -50,6 +50,8 @@ export const validateForm = (state: FormData): FormErrors => {
     }
     if (!state[EFormData.CVC]) {
         errors[EFormData.CVC] = "Can't be blank";
+    } else if (!/^\d{3}$/.test(state[EFormData.CVC].replace(/\s/g, ''))) {
+        errors[EFormData.CVC] = "Must be 3 digits";
     }
     return errors
 }

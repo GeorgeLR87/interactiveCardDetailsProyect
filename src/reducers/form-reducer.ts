@@ -3,25 +3,28 @@ import { FormData } from "../types/FormData";
 
 export type FormActions =
   | {
-      type: EFormaActions.SetCardholderName;
-      payload: { cardholderName: FormData[EFormData.CardholderName] };
-    }
+    type: EFormaActions.SetCardholderName;
+    payload: { cardholderName: FormData[EFormData.CardholderName] };
+  }
   | {
-      type: EFormaActions.SetCardNumber;
-      payload: { cardNumber: FormData[EFormData.CardNumber] };
-    }
+    type: EFormaActions.SetCardNumber;
+    payload: { cardNumber: FormData[EFormData.CardNumber] };
+  }
   | {
-      type: EFormaActions.SetExpMonth;
-      payload: { expMonth: FormData[EFormData.ExpMonth] };
-    }
+    type: EFormaActions.SetExpMonth;
+    payload: { expMonth: FormData[EFormData.ExpMonth] };
+  }
   | {
-      type: EFormaActions.SetExpYear;
-      payload: { expYear: FormData[EFormData.ExpYear] };
-    }
+    type: EFormaActions.SetExpYear;
+    payload: { expYear: FormData[EFormData.ExpYear] };
+  }
   | {
-      type: EFormaActions.SetCVC;
-      payload: { cvc: FormData[EFormData.CVC] };
-    };
+    type: EFormaActions.SetCVC;
+    payload: { cvc: FormData[EFormData.CVC] };
+  }
+  | {
+    type: EFormaActions.ResetForm;
+  };
 
 export const initialState: FormData = {
   cardholderName: "" as EFormData.CardholderName,
@@ -64,6 +67,9 @@ export const formReducer = (
       ...state,
       cvc: action.payload.cvc,
     };
+  }
+  if (action.type === EFormaActions.ResetForm) {
+    return initialState;
   }
   return state;
 };

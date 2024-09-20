@@ -35,7 +35,7 @@ const CVCInput = ({ state, dispatch, error }: CVCInputProps) => {
         onChange={handleChange}
         maxLength={3}
       />
-      {error && <p className="text-red-card text-sm mt-1">{error}</p>}
+      {error && <p className="text-red-card text-xsl mt-1">{error}</p>}
     </div>
   );
 };

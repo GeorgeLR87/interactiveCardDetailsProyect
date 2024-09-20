@@ -29,7 +29,6 @@ const ExpYearInput = ({ state, dispatch, error }: ExpYearInputProps) => {
                 onChange={handleChange}
                 maxLength={2}
             />
-            {error && <p className="text-red-card text-sm mt-1">{error}</p>}
         </div>
     )
 }

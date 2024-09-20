@@ -6,10 +6,11 @@ import { EFormaActions, EFormData } from "../../../enums/Form"
 type ExpMonthInputProps = {
     state: string
     dispatch: Dispatch<FormActions>
-    error?: string;
+    expMonthError?: string;
+    expYearError?: string;
 }
 
-const ExpMonthInput = ({ state, dispatch, error }: ExpMonthInputProps) => {
+const ExpMonthInput = ({ state, dispatch, expMonthError, expYearError }: ExpMonthInputProps) => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const formattedMonth = formatMonth(e.target.value)
@@ -22,7 +23,7 @@ const ExpMonthInput = ({ state, dispatch, error }: ExpMonthInputProps) => {
     return (
         <div>
             <input
-                className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${error ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
+                className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${expMonthError ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
                 id={EFormData.ExpMonth}
                 type="number"
                 placeholder="MM"
@@ -30,7 +31,11 @@ const ExpMonthInput = ({ state, dispatch, error }: ExpMonthInputProps) => {
                 onChange={handleChange}
                 maxLength={2}
             />
-            {error && <p className="text-red-card text-sm mt-1">{error}</p>}
+            {(expMonthError || expYearError) && (
+                <p className="text-red-card text-xsl mt-1">
+                    {expMonthError || expYearError}
+                </p>
+            )}
         </div>
     )
 }

@@ -22,6 +22,7 @@ export default {
       },
       fontSize: {
         xs: '0.6rem',
+        xsl: '0.84rem',
       },
       fontFamily: {
         'space-grotesk': ['"Space Grotesk"', 'sans-serif'],

@@ -34,7 +34,7 @@ const CardNumberInput = ({ state, dispatch, error }: CardNumberInputProps) => {
         onChange={handleChange}
         maxLength={19}
       />
-      {error && <p className="text-red-card text-sm mt-1">{error}</p>}
+      {error && <p className="text-red-card text-xsl mt-1">{error}</p>}
     </div>
   );
 };
