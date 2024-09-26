@@ -4,6 +4,7 @@ export const enum EFormaActions {
     SetExpMonth = 'set-exp-month',
     SetExpYear = 'set-exp-year',
     SetCVC = 'set-cvc',
+    ResetForm = 'reset-form'
 }
 
 export const enum EFormData {

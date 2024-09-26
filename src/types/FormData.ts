@@ -7,3 +7,7 @@ export type FormData = {
   expYear: EFormData.ExpYear;
   cvc: EFormData.CVC;
 };
+
+export type FormErrors = {
+  [key in EFormData]?: string;
+};

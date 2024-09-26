@@ -6,29 +6,40 @@ import ExpYearInput from "./components/ExpYearInput"
 
 type ExpDatesInputProps = {
     state: {
-    expMonth: string;
-    expYear: string;
+        expMonth: string;
+        expYear: string;
+    }
+    dispatch: Dispatch<FormActions>;
+    errors?: {
+        expMonth?: string;
+        expYear?: string;
+    };
 }
-dispatch: Dispatch<FormActions>;
-}
 
-const Dates = ({ state, dispatch }: ExpDatesInputProps) => {
-    return (
-        <div className="mb-4">
-            <label
-                htmlFor={EFormData.ExpMonth}
-                className="block uppercase text-sm text-very-dark-violet mb-1"
-            >
-                Exp. Date (MM/YY)
-            </label>    
-            <div className="flex flex-row gap-2">
+const Dates = ({ state, dispatch, errors }: ExpDatesInputProps) => (
+    <div className="mb-4">
+        <label
+            htmlFor={EFormData.ExpMonth}
+            className="block uppercase text-sm text-deep-violet mb-1"
+        >
+            Exp. Date (MM/YY)
+        </label>
+        <div className="flex flex-row gap-2">
 
-                <ExpMonthInput state={state.expMonth} dispatch={dispatch} />
-                <ExpYearInput state={state.expYear} dispatch={dispatch} />
+            <ExpMonthInput
+                state={state.expMonth}
+                dispatch={dispatch}
+                expMonthError={errors?.expMonth}  
+                expYearError={errors?.expYear}
+            />
+            <ExpYearInput
+                state={state.expYear}
+                dispatch={dispatch}
+                error={errors?.expYear}
+            />
 
-            </div>
         </div>
-    )
-}
+    </div>
+)
 
 export default Dates
