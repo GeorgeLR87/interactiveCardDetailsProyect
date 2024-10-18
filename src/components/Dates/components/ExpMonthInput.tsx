@@ -1,16 +1,15 @@
-import { ChangeEvent, Dispatch } from "react"
-import { FormActions } from "../../../reducers/form-reducer"
-import { formatMonth } from "../../../helpers/helpers"
+import { ChangeEvent } from "react"
 import { EFormaActions, EFormData } from "../../../enums/Form"
+import { formatMonth } from "../../../helpers/helpers"
+import { useForm } from "../../../hooks/useForm"
 
-type ExpMonthInputProps = {
-    state: string
-    dispatch: Dispatch<FormActions>
-    expMonthError?: string;
-    expYearError?: string;
-}
+const ExpMonthInput = () => {
 
-const ExpMonthInput = ({ state, dispatch, expMonthError, expYearError }: ExpMonthInputProps) => {
+    const { state, dispatch, errors } = useForm()
+    const { expMonth } = state
+    const expMonthError = errors[EFormData.ExpMonth];
+    const expYearError = errors[EFormData.ExpYear];
+    
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const formattedMonth = formatMonth(e.target.value)
@@ -27,7 +26,7 @@ const ExpMonthInput = ({ state, dispatch, expMonthError, expYearError }: ExpMont
                 id={EFormData.ExpMonth}
                 type="number"
                 placeholder="MM"
-                value={state}
+                value={expMonth}
                 onChange={handleChange}
                 maxLength={2}
             />

@@ -1,14 +1,13 @@
-import { ChangeEvent, Dispatch } from "react";
+import { ChangeEvent } from "react";
 import { EFormaActions, EFormData } from "../../../enums/Form";
-import { FormActions } from "../../../reducers/form-reducer";
+import { useForm } from "../../../hooks/useForm";
 
-type CardholderNameInputProps = {
-  state: string;
-  dispatch: Dispatch<FormActions>;
-  error?: string;
-};
+const CardHolderNameInput = () => {
 
-const CardHolderNameInput = ({ state, dispatch, error }: CardholderNameInputProps) => {
+  const { dispatch, state, errors } = useForm()
+  const {cardholderName} = state
+  const cardholderNameError = errors[EFormData.CardholderName];
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>,
   ) => {
@@ -27,14 +26,14 @@ const CardHolderNameInput = ({ state, dispatch, error }: CardholderNameInputProp
         Cardholder Name
       </label>
       <input
-        className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${error ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
+        className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${cardholderNameError ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
         id={EFormData.CardholderName}
         type="text"
         placeholder="e.g. Jane Appleseed"
-        value={state}
+        value={cardholderName}
         onChange={handleChange}
       />
-      {error && <p className="text-red-card text-xsl mt-1">{error}</p>}
+      {cardholderNameError && <p className="text-red-card text-xsl mt-1">{cardholderNameError}</p>}
     </div>
   );
 };

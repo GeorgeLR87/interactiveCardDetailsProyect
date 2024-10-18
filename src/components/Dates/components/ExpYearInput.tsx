@@ -1,15 +1,14 @@
-import { ChangeEvent, Dispatch } from "react"
-import { FormActions } from "../../../reducers/form-reducer"
-import { formatYear } from "../../../helpers/helpers"
+import { ChangeEvent } from "react"
 import { EFormaActions, EFormData } from "../../../enums/Form"
+import { formatYear } from "../../../helpers/helpers"
+import { useForm } from "../../../hooks/useForm"
 
-type ExpYearInputProps = {
-    state: string;
-    dispatch: Dispatch<FormActions>;
-    error?: string;
-}
+const ExpYearInput = () => {
 
-const ExpYearInput = ({ state, dispatch, error }: ExpYearInputProps) => {
+    const { state, dispatch, errors } = useForm()
+    const { expYear } = state
+    const expYearError = errors[EFormData.ExpYear];
+
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const formattedYear = formatYear(e.target.value);
         dispatch({
@@ -21,11 +20,11 @@ const ExpYearInput = ({ state, dispatch, error }: ExpYearInputProps) => {
     return (
         <div>
             <input
-                className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${error ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
+                className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${expYearError ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
                 id={EFormData.ExpYear}
                 type="number"
                 placeholder="YY"
-                value={state}
+                value={expYear}
                 onChange={handleChange}
                 maxLength={2}
             />

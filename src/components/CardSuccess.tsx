@@ -1,13 +1,10 @@
-import { Dispatch, SetStateAction } from "react";
-import { FormActions } from "../reducers/form-reducer";
 import { EFormaActions } from "../enums/Form";
+import { useForm } from "../hooks/useForm";
 
-type FormProps = {
-  dispatch: Dispatch<FormActions>;
-  setIsSubmitted: Dispatch<SetStateAction<boolean>>;
-};
+const CardSuccess = () => {
 
-const CardSuccess = ({ dispatch, setIsSubmitted }: FormProps) => {
+  const { dispatch, setIsSubmitted } = useForm()
+
   const handleClick = () => {
     dispatch( { type: EFormaActions.ResetForm })
     setIsSubmitted(false);

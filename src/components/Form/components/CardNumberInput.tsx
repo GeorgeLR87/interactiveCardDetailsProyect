@@ -1,14 +1,15 @@
-import { ChangeEvent, Dispatch } from "react";
+import { ChangeEvent } from "react";
 import { EFormaActions, EFormData } from "../../../enums/Form";
 import { formatCardNumber } from "../../../helpers/helpers";
-import { FormActions } from "../../../reducers/form-reducer";
+import { useForm } from "../../../hooks/useForm";
 
-type CardNumberInputProps = {
-  state: string;
-  dispatch: Dispatch<FormActions>;
-  error?: string;
-};
-const CardNumberInput = ({ state, dispatch, error }: CardNumberInputProps) => {
+const CardNumberInput = () => {
+
+  const {state, dispatch, errors} = useForm()
+  const { cardNumber } = state
+  const cardNumberError = errors[EFormData.CardNumber];
+
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const formattedCardNumber = formatCardNumber(e.target.value);
     dispatch({
@@ -26,15 +27,15 @@ const CardNumberInput = ({ state, dispatch, error }: CardNumberInputProps) => {
         Card Number
       </label>
       <input
-        className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${error ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
+        className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${cardNumberError ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
         id={EFormData.CardNumber}
         type="text"
         placeholder="e.g. 1234 5678 9123 0000"
-        value={state}
+        value={cardNumber}
         onChange={handleChange}
         maxLength={19}
       />
-      {error && <p className="text-red-card text-xsl mt-1">{error}</p>}
+      {cardNumberError && <p className="text-red-card text-xsl mt-1">{cardNumberError}</p>}
     </div>
   );
 };
