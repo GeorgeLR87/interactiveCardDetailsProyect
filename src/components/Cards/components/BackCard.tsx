@@ -1,8 +1,9 @@
-import { useForm } from "../../../hooks/useForm"
+import { useContext } from "react"
+import { FormContext } from "../../../context/FormContext"
 
 const BackCard = () => {
 
-    const { state } = useForm()
+    const { state } = useContext(FormContext)
     const { cvc } = state
     
     return (

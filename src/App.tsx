@@ -1,12 +1,12 @@
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 import Cards from "./components/Cards/Cards"
 import CardSuccess from "./components/CardSuccess"
 import Form from "./components/Form/Form"
-import { useForm } from "./hooks/useForm"
+import { FormContext } from "./context/FormContext"
 
 function App() {
 
-  const { state, isSubmitted } = useForm()
+  const { state, isSubmitted } = useContext(FormContext)
 
   useEffect(() => {
     localStorage.setItem("formData", JSON.stringify(state));

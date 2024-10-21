@@ -1,21 +1,12 @@
-import { ChangeEvent } from "react";
-import { EFormaActions, EFormData } from "../../../enums/Form";
-import { useForm } from "../../../hooks/useForm";
+import { useContext } from "react";
+import { FormContext } from "../../../context/FormContext";
+import { EFormData } from "../../../enums/Form";
 
 const CardHolderNameInput = () => {
 
-  const { dispatch, state, errors } = useForm()
+  const { state, errors, handleChangeCardHolderName } = useContext(FormContext)
   const {cardholderName} = state
   const cardholderNameError = errors[EFormData.CardholderName];
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>,
-  ) => {
-    dispatch({
-      type: EFormaActions.SetCardholderName,
-      payload: { cardholderName: e.target.value as EFormData.CardholderName },
-    });
-  };
 
   return (
     <div className="mb-4">
@@ -31,7 +22,7 @@ const CardHolderNameInput = () => {
         type="text"
         placeholder="e.g. Jane Appleseed"
         value={cardholderName}
-        onChange={handleChange}
+        onChange={handleChangeCardHolderName}
       />
       {cardholderNameError && <p className="text-red-card text-xsl mt-1">{cardholderNameError}</p>}
     </div>

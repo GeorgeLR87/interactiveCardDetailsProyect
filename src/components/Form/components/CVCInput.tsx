@@ -1,21 +1,12 @@
-import { ChangeEvent } from "react";
-import { EFormaActions, EFormData } from "../../../enums/Form";
-import { formatCVC } from "../../../helpers/helpers";
-import { useForm } from "../../../hooks/useForm";
+import { useContext } from "react";
+import { FormContext } from "../../../context/FormContext";
+import { EFormData } from "../../../enums/Form";
 
 const CVCInput = () => {
 
-  const { state, dispatch, errors } = useForm()
+  const { state, errors, handleChangeCVC } = useContext(FormContext)
   const { cvc } = state
-  const cvcError = errors[EFormData.CVC];
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const formattedCVC = formatCVC(e.target.value);
-    dispatch({
-      type: EFormaActions.SetCVC,
-      payload: { cvc: formattedCVC as EFormData.CVC },
-    });
-  };
+  const cvcError = errors[EFormData.CVC]
 
   return (
     <div className="mb-4 w-full">
@@ -31,7 +22,7 @@ const CVCInput = () => {
         type="number"
         placeholder="e.g. 123"
         value={cvc}
-        onChange={handleChange}
+        onChange={handleChangeCVC}
         maxLength={3}
       />
       {cvcError && <p className="text-red-card text-xsl mt-1">{cvcError}</p>}

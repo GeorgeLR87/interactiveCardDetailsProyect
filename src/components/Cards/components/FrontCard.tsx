@@ -1,9 +1,10 @@
-import { useForm } from "../../../hooks/useForm"
+import { useContext } from "react"
+import { FormContext } from "../../../context/FormContext"
 
 
 const FrontCard = () => {
 
-    const { state } = useForm()
+    const { state } = useContext(FormContext)
     const { cardNumber, cardholderName, expMonth, expYear } = state
 
     return (

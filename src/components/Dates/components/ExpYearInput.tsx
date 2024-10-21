@@ -1,21 +1,12 @@
-import { ChangeEvent } from "react"
-import { EFormaActions, EFormData } from "../../../enums/Form"
-import { formatYear } from "../../../helpers/helpers"
-import { useForm } from "../../../hooks/useForm"
+import { useContext } from "react"
+import { FormContext } from "../../../context/FormContext"
+import { EFormData } from "../../../enums/Form"
 
 const ExpYearInput = () => {
 
-    const { state, dispatch, errors } = useForm()
+    const { state, errors, handleChangeExpYear } = useContext(FormContext)
     const { expYear } = state
     const expYearError = errors[EFormData.ExpYear];
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const formattedYear = formatYear(e.target.value);
-        dispatch({
-            type: EFormaActions.SetExpYear,
-            payload: { expYear: formattedYear as EFormData.ExpYear },
-        })
-    }
 
     return (
         <div>
@@ -25,7 +16,7 @@ const ExpYearInput = () => {
                 type="number"
                 placeholder="YY"
                 value={expYear}
-                onChange={handleChange}
+                onChange={handleChangeExpYear}
                 maxLength={2}
             />
         </div>

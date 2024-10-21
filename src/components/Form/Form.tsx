@@ -1,5 +1,5 @@
-import { validateForm } from "../../helpers/helpers";
-import { useForm } from "../../hooks/useForm";
+import { useContext } from "react";
+import { FormContext } from "../../context/FormContext";
 import Dates from "../Dates/Dates";
 import CardHolderNameInput from "./components/CardHolderNameInput";
 import CardNumberInput from "./components/CardNumberInput";
@@ -7,22 +7,10 @@ import CVCInput from "./components/CVCInput";
 
 const Form = () => {
 
-  const { state, setErrors, setIsSubmitted } = useForm()
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const newErrors = validateForm(state);
-
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
-      setIsSubmitted(true)
-    }
-  };
+  const { handleSubmitForm } = useContext(FormContext)
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center mx-2 md:mt-14 lg:mt-0">
+    <form onSubmit={handleSubmitForm} className="flex flex-col justify-center items-center mx-2 md:mt-14 lg:mt-0">
       <div className="w-full max-w-sm">
 
         <CardHolderNameInput />
