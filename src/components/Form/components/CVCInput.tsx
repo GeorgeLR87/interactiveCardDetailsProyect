@@ -1,22 +1,12 @@
-import { ChangeEvent, Dispatch } from "react";
-import { EFormaActions, EFormData } from "../../../enums/Form";
-import { formatCVC } from "../../../helpers/helpers";
-import { FormActions } from "../../../reducers/form-reducer";
+import { useContext } from "react";
+import { FormContext } from "../../../context/FormContext";
+import { EFormData } from "../../../enums/Form";
 
-type CVCInputProps = {
-  state: string;
-  dispatch: Dispatch<FormActions>;
-  error?: string;
-};
+const CVCInput = () => {
 
-const CVCInput = ({ state, dispatch, error }: CVCInputProps) => {
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const formattedCVC = formatCVC(e.target.value);
-    dispatch({
-      type: EFormaActions.SetCVC,
-      payload: { cvc: formattedCVC as EFormData.CVC },
-    });
-  };
+  const { state, errors, handleChangeCVC } = useContext(FormContext)
+  const { cvc } = state
+  const cvcError = errors[EFormData.CVC]
 
   return (
     <div className="mb-4 w-full">
@@ -27,15 +17,15 @@ const CVCInput = ({ state, dispatch, error }: CVCInputProps) => {
         CVC
       </label>
       <input
-        className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${error ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
+        className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${cvcError ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
         id={EFormData.CVC}
         type="number"
         placeholder="e.g. 123"
-        value={state}
-        onChange={handleChange}
+        value={cvc}
+        onChange={handleChangeCVC}
         maxLength={3}
       />
-      {error && <p className="text-red-card text-xsl mt-1">{error}</p>}
+      {cvcError && <p className="text-red-card text-xsl mt-1">{cvcError}</p>}
     </div>
   );
 };

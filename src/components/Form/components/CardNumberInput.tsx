@@ -1,21 +1,12 @@
-import { ChangeEvent, Dispatch } from "react";
-import { EFormaActions, EFormData } from "../../../enums/Form";
-import { formatCardNumber } from "../../../helpers/helpers";
-import { FormActions } from "../../../reducers/form-reducer";
+import { useContext } from "react";
+import { FormContext } from "../../../context/FormContext";
+import { EFormData } from "../../../enums/Form";
 
-type CardNumberInputProps = {
-  state: string;
-  dispatch: Dispatch<FormActions>;
-  error?: string;
-};
-const CardNumberInput = ({ state, dispatch, error }: CardNumberInputProps) => {
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const formattedCardNumber = formatCardNumber(e.target.value);
-    dispatch({
-      type: EFormaActions.SetCardNumber,
-      payload: { cardNumber: formattedCardNumber as EFormData.CardNumber },
-    });
-  };
+const CardNumberInput = () => {
+
+  const {state, errors, handleChangeCardHolderNumber} = useContext(FormContext)
+  const { cardNumber } = state
+  const cardNumberError = errors[EFormData.CardNumber];
 
   return (
     <div className="mb-4">
@@ -26,15 +17,15 @@ const CardNumberInput = ({ state, dispatch, error }: CardNumberInputProps) => {
         Card Number
       </label>
       <input
-        className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${error ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
+        className={`w-full p-2 border rounded-lg placeholder:text-light-grayish-violet focus:outline-none ${cardNumberError ? 'border-red-card focus:border-red-card' : 'focus:border-purple-700'}`}
         id={EFormData.CardNumber}
         type="text"
         placeholder="e.g. 1234 5678 9123 0000"
-        value={state}
-        onChange={handleChange}
+        value={cardNumber}
+        onChange={handleChangeCardHolderNumber}
         maxLength={19}
       />
-      {error && <p className="text-red-card text-xsl mt-1">{error}</p>}
+      {cardNumberError && <p className="text-red-card text-xsl mt-1">{cardNumberError}</p>}
     </div>
   );
 };

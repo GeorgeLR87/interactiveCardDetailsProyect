@@ -1,18 +1,10 @@
-import { Dispatch, SetStateAction } from "react";
-import { FormActions } from "../reducers/form-reducer";
-import { EFormaActions } from "../enums/Form";
+import { useContext } from "react";
+import { FormContext } from "../context/FormContext";
 
-type FormProps = {
-  dispatch: Dispatch<FormActions>;
-  setIsSubmitted: Dispatch<SetStateAction<boolean>>;
-};
+const CardSuccess = () => {
 
-const CardSuccess = ({ dispatch, setIsSubmitted }: FormProps) => {
-  const handleClick = () => {
-    dispatch( { type: EFormaActions.ResetForm })
-    setIsSubmitted(false);
-    
-  }
+  const { handleClickCardSuccess } = useContext(FormContext)
+
   return (
     <section className="flex flex-col justify-center items-center h-screen md:w-1/2 lg:w-1/5 pt-11 md:pt-28 lg:pt-0">
       <div className="w-14 h-14 bg-gradient-to-r from-gradient-blue-icon to-gradient-purple-icon rounded-full flex items-center justify-center lg:py-4">
@@ -37,7 +29,7 @@ const CardSuccess = ({ dispatch, setIsSubmitted }: FormProps) => {
 
       <button
         className="w-full mt-9 bg-deep-violet text-white py-3 rounded-lg text--base hover:bg-dark-grayish-violet transition duration-200"
-        onClick={handleClick}
+        onClick={handleClickCardSuccess}
       >
         Continue
       </button>
